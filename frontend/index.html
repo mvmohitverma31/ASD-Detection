@@ -3,125 +3,249 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASD Screening Form</title>
-  <link rel="stylesheet" href="style.css">
+  <title>ASD Screening Intelligence Studio</title>
+  <!-- Google Fonts: Inter and JetBrains Mono for clinical typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3.0.0">
 </head>
 <body>
-  <main class="page-shell">
-    <section class="workspace">
-      <form id="screening-form" class="panel form-panel">
-        <div class="panel-heading">
-          <div class="brand-mark">
-            <div class="brand-icon">+</div>
-            <div>
-              <h1>Autism Spectrum Disorder (ASD) Detection Test</h1>
-              <p>A calm screening form designed to feel simple, supportive, and easy to complete.</p>
-            </div>
-          </div>
+  <div class="app-container">
+    <!-- Header Area -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="medical-cross-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 10.5h-5.5V5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v5.5H5c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5h5.5V19c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5v-5.5H19c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5z"/>
+          </svg>
         </div>
-
-        <div class="details-grid">
-          <label class="field">
-            <span>Age</span>
-            <input id="age" type="number" min="1" max="120" placeholder="e.g. 24" required>
-          </label>
-
-          <label class="field">
-            <span>Gender</span>
-            <select id="gender" required>
-              <option value="" selected disabled>Select gender</option>
-              <option value="f">Female</option>
-              <option value="m">Male</option>
-              <option value="other">Other</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Ethnicity</span>
-            <select id="ethnicity" required>
-              <option value="" selected disabled>Select ethnicity</option>
-              <option value="White-European">White-European</option>
-              <option value="Latino">Latino</option>
-              <option value="Middle Eastern">Middle Eastern</option>
-              <option value="Asian">Asian</option>
-              <option value="Black">Black</option>
-              <option value="South Asian">South Asian</option>
-              <option value="Hispanic">Hispanic</option>
-              <option value="Turkish">Turkish</option>
-              <option value="Pasifika">Pasifika</option>
-              <option value="Others">Others</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Country of Residence</span>
-            <input id="contry_of_res" type="text" placeholder="e.g. India" required>
-          </label>
-
-          <label class="field">
-            <span>Jaundice History</span>
-            <select id="jundice" required>
-              <option value="" selected disabled>Select option</option>
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Family History of Autism</span>
-            <select id="austim" required>
-              <option value="" selected disabled>Select option</option>
-              <option value="no">No</option>
-              <option value="yes">Yes</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Respondent Relation</span>
-            <select id="relation" required>
-              <option value="" selected disabled>Select relation</option>
-              <option value="Self">Self</option>
-              <option value="Parent">Parent</option>
-              <option value="Health care professional">Health care professional</option>
-              <option value="Relative">Relative</option>
-              <option value="Others">Others</option>
-            </select>
-          </label>
+        <div class="brand-text">
+          <h1>ASD Screening Intelligence Studio</h1>
+          <span class="version-tag">Diagnostic Telemetry v3.0.0</span>
         </div>
-
-        <div class="question-grid" id="question-grid"></div>
-
-        <div class="actions">
-          <button id="submit-button" type="submit">Submit</button>
+      </div>
+      
+      <div class="header-actions">
+        <button type="button" id="info-drawer-btn" class="btn btn-secondary btn-icon-only" title="Clinical Information">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.852l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+          </svg>
+        </button>
+        <div class="system-status">
+          <span class="status-dot green animate-pulse"></span>
+          <span class="status-label">SYS: ONLINE</span>
         </div>
-      </form>
+      </div>
+    </header>
 
-      <section class="panel result-panel">
-        <div class="panel-heading">
-          <h2>Your Result</h2>
-          <p>One clear and friendly summary based on your answers.</p>
-        </div>
-
-        <div id="status-card" class="status-card">
+    <!-- Workspace Layout -->
+    <main class="workspace-center">
+      <!-- Single Unified Panel -->
+      <section class="workspace-pane card unified-card-3d" id="unified-card-pane">
+        
+        <div id="status-card" class="status-card hidden">
           Complete the form to see your result here.
         </div>
-        <div class="result-grid" id="result-grid"></div>
+
+        <!-- State 1: Form -->
+        <div id="form-container" class="unified-state active">
+          <form id="screening-form" class="wizard-form">
+            <!-- Stepper Indicators -->
+            <nav class="stepper-indicator">
+              <div class="step-node active" data-step="1">
+                <span class="step-num">01</span>
+                <span class="step-label">Patient Profile</span>
+              </div>
+              <div class="step-connector"></div>
+              <div class="step-node" data-step="2">
+                <span class="step-num">02</span>
+                <span class="step-label">Social Traits</span>
+              </div>
+              <div class="step-connector"></div>
+              <div class="step-node" data-step="3">
+                <span class="step-num">03</span>
+                <span class="step-label">Behavioral Traits</span>
+              </div>
+            </nav>
+
+            <!-- Stepper Content Container -->
+            <div class="step-container">
+              <!-- Step 1: Patient Biometrics -->
+              <fieldset class="wizard-step active" id="step-1">
+                <legend class="step-header">
+                  <h2>Demographics & Medical Profile</h2>
+                  <p>Provide foundational biometric data and background medical telemetry.</p>
+                </legend>
+                
+                <div class="fields-grid">
+                  <div class="field-item full-width slider-container">
+                    <div class="field-label-row">
+                      <span>Patient Age (Years)</span>
+                      <span id="age-display" class="value-badge">24</span>
+                    </div>
+                    <input id="age" type="range" min="1" max="90" value="24" required>
+                  </div>
+
+                  <div class="field-item">
+                    <span>Gender</span>
+                    <div class="segmented-control" id="gender-group">
+                      <input type="radio" name="gender" id="gender-f" value="f">
+                      <label for="gender-f">Female</label>
+                      
+                      <input type="radio" name="gender" id="gender-m" value="m" checked>
+                      <label for="gender-m">Male</label>
+                      
+                      <input type="radio" name="gender" id="gender-other" value="other">
+                      <label for="gender-other">Other</label>
+                    </div>
+                    <input type="hidden" id="gender" value="m" required>
+                  </div>
+
+                  <div class="field-item">
+                    <span>Ethnicity Spectrum</span>
+                    <select id="ethnicity" required>
+                      <option value="" disabled>Select ethnicity</option>
+                      <option value="White-European">White-European</option>
+                      <option value="Latino">Latino</option>
+                      <option value="Middle Eastern">Middle Eastern</option>
+                      <option value="Asian">Asian</option>
+                      <option value="Black">Black</option>
+                      <option value="South Asian">South Asian</option>
+                      <option value="Hispanic" selected>Hispanic</option>
+                      <option value="Turkish">Turkish</option>
+                      <option value="Pasifika">Pasifika</option>
+                      <option value="Others">Others</option>
+                    </select>
+                  </div>
+
+                  <div class="field-item">
+                    <span>Country of Residence</span>
+                    <input id="contry_of_res" type="text" placeholder="e.g. United States" value="Mexico" required>
+                  </div>
+
+                  <div class="field-item">
+                    <span>Jaundice at Birth</span>
+                    <div class="segmented-control" id="jaundice-group">
+                      <input type="radio" name="jundice" id="jaundice-no" value="no" checked>
+                      <label for="jaundice-no">No</label>
+                      
+                      <input type="radio" name="jundice" id="jaundice-yes" value="yes">
+                      <label for="jaundice-yes">Yes</label>
+                    </div>
+                    <input type="hidden" id="jundice" value="no" required>
+                  </div>
+
+                  <div class="field-item">
+                    <span>Autism Family History</span>
+                    <div class="segmented-control" id="austim-group">
+                      <input type="radio" name="austim" id="austim-no" value="no" checked>
+                      <label for="austim-no">No</label>
+                      
+                      <input type="radio" name="austim" id="austim-yes" value="yes">
+                      <label for="austim-yes">Yes</label>
+                    </div>
+                    <input type="hidden" id="austim" value="no" required>
+                  </div>
+
+                  <div class="field-item">
+                    <span>Respondent Relation</span>
+                    <select id="relation" required>
+                      <option value="" disabled>Select relation</option>
+                      <option value="Self" selected>Self</option>
+                      <option value="Parent">Parent</option>
+                      <option value="Health care professional">Health professional</option>
+                      <option value="Relative">Relative</option>
+                      <option value="Others">Others</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Step 2: Social Traits -->
+              <fieldset class="wizard-step" id="step-2">
+                <legend class="step-header">
+                  <h2>Social Interaction Assessment (A1 - A5)</h2>
+                  <p>Evaluate patient characteristics related to social interaction, communication, and connections.</p>
+                </legend>
+                <div class="questions-list" id="social-questions-grid">
+                  <!-- Dynamically Rendered Questionnaire -->
+                </div>
+              </fieldset>
+
+              <!-- Step 3: Behavioral Traits -->
+              <fieldset class="wizard-step" id="step-3">
+                <legend class="step-header">
+                  <h2>Behavioral & Repetitive Assessment (A6 - A10)</h2>
+                  <p>Evaluate characteristics regarding repetitive habits, adapting to change, and specific focus areas.</p>
+                </legend>
+                <div class="questions-list" id="behavioral-questions-grid">
+                  <!-- Dynamically Rendered Questionnaire -->
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- Wizard Actions Footer -->
+            <footer class="wizard-actions">
+              <button type="button" id="back-btn" class="btn btn-secondary" disabled>Back</button>
+              <button type="button" id="next-btn" class="btn btn-primary">Next Step</button>
+              <button type="submit" id="submit-button" class="btn btn-accent hidden">Run Diagnostics</button>
+            </footer>
+          </form>
+        </div>
+
+        <!-- State 2/3: Scanning & Result Container -->
+        <div id="result-container" class="unified-state hidden dashboard-content">
+           <!-- Populated by JS -->
+        </div>
+
       </section>
-    </section>
+    </main>
+  </div>
 
-    <section class="asd-info">
-      <h2>WHAT IS ASD</h2>
-      <p>
-        Autism Spectrum Disorder (ASD) is a developmental condition that can affect communication, behavior,
-        social interaction, and the way a person experiences the world around them. It is not something to be
-        feared, and it does not mean something is wrong with a person. Many people with ASD live meaningful,
-        successful, and deeply fulfilling lives with the right understanding and support. Early awareness can be
-        helpful because it allows individuals and families to better understand strengths, needs, and the kinds of
-        support that may make daily life easier and more comfortable.
-      </p>
-    </section>
-  </main>
+  <!-- Sliding Clinical Information Drawer -->
+  <aside class="clinical-drawer" id="clinical-drawer">
+    <div class="drawer-header">
+      <h3>Clinical Reference Manual</h3>
+      <button type="button" id="close-drawer-btn" class="drawer-close">✕</button>
+    </div>
+    <div class="drawer-content">
+      <div class="reference-section">
+        <h4>Understanding Autism Spectrum Disorder</h4>
+        <p>
+          Autism Spectrum Disorder (ASD) is a complex neurodevelopmental condition characterized by diverse differences in social interaction, verbal and non-verbal communication, and sensory experiences.
+        </p>
+        <p>
+          Rather than a linear scale, ASD is structured as a rich spectrum. Individuals present unique profiles of cognitive strengths, creative perspectives, and varying support needs.
+        </p>
+      </div>
 
-  <script src="script.js"></script>
+      <div class="reference-section">
+        <h4>Telemetry Methods Explained</h4>
+        <ul class="method-list">
+          <li>
+            <strong>🧠 Baseline Random Forest</strong>
+            <p>A conventional ensemble machine learning classifier that aggregates decision paths to establish a probability index from historical patterns.</p>
+          </li>
+          <li>
+            <strong>📐 Fuzzy Logic System</strong>
+            <p>A rule-based inference model simulating human reasoning. Evaluates inputs as continuous degrees of membership (e.g., social, behavioral indexes) rather than rigid binary splits.</p>
+          </li>
+          <li>
+            <strong>⚡ Hybrid Neural-Forest</strong>
+            <p>An advanced clinical model combining classical ML with soft membership functions, leveraging both hard indicators and fuzzy features for hyper-precise analytics.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reference-section note">
+        <h5>Important Medical Disclaimer</h5>
+        <p>This application is an educational, engineering research platform designed for diagnostic support and model experimentation. It is not an FDA-approved clinical diagnostic instrument and does not replace professional psychiatric or medical evaluation.</p>
+      </div>
+    </div>
+  </aside>
+  <div class="drawer-overlay" id="drawer-overlay"></div>
+
+  <script src="script.js?v=3.0.0"></script>
 </body>
 </html>

@@ -149,5 +149,6 @@ def predict(payload: ScreeningRequest) -> dict[str, object]:
             "baseline_probability": baseline_probability,
             "fuzzy_probability": fuzzy_result.score,
             "hybrid_probability": hybrid_probability,
+            "fuzzy_details": fuzzy_result.summary,
         },
     }
