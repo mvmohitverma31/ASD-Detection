@@ -78,7 +78,7 @@ function renderQuestionnaire() {
         <strong>${q.text}</strong>
       </div>
       <div class="segmented-control" id="Q${q.id}-group">
-        <input type="radio" name="A${q.id}_Score" id="A${q.id}-no" value="0" checked>
+        <input type="radio" name="A${q.id}_Score" id="A${q.id}-no" value="0">
         <label for="A${q.id}-no">No</label>
         
         <input type="radio" name="A${q.id}_Score" id="A${q.id}-yes" value="1">
@@ -317,7 +317,7 @@ function renderDiagnosticsReport(payload, data) {
 
       <!-- Tiny Footnote Disclaimer (Replaces Bulky Disclaimer Panels) -->
       <footer class="telemetry-footnote">
-        *Unified Support Telemetry compiled. Not a definitive clinical diagnosis. Please consult a qualified psychiatrist or medical professional for full diagnostic testing.
+        *This diagnosis is just based on machine learning techniques, please consult a qualified medical professional for an actual diagnosis.
       </footer>
     </article>
   `;
@@ -386,6 +386,15 @@ async function runDiagnostics(event) {
 
   if (!validateStep(1) || !validateStep(2) || !validateStep(3)) {
     return;
+  }
+  
+  // Validate that all questions are answered
+  for (let idx = 1; idx <= 10; idx += 1) {
+    const radio = document.querySelector(`input[name="A${idx}_Score"]:checked`);
+    if (!radio) {
+      alert("Please answer all questions before proceeding.");
+      return;
+    }
   }
 
   const payload = getPayload();

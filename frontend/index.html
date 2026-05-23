@@ -93,26 +93,26 @@
                       <input type="radio" name="gender" id="gender-f" value="f">
                       <label for="gender-f">Female</label>
                       
-                      <input type="radio" name="gender" id="gender-m" value="m" checked>
+                      <input type="radio" name="gender" id="gender-m" value="m">
                       <label for="gender-m">Male</label>
                       
                       <input type="radio" name="gender" id="gender-other" value="other">
                       <label for="gender-other">Other</label>
                     </div>
-                    <input type="hidden" id="gender" value="m" required>
+                    <input type="hidden" id="gender" value="" required>
                   </div>
 
                   <div class="field-item">
                     <span>Ethnicity Spectrum</span>
                     <select id="ethnicity" required>
-                      <option value="" disabled>Select ethnicity</option>
+                      <option value="" disabled selected>Select ethnicity</option>
                       <option value="White-European">White-European</option>
                       <option value="Latino">Latino</option>
                       <option value="Middle Eastern">Middle Eastern</option>
                       <option value="Asian">Asian</option>
                       <option value="Black">Black</option>
                       <option value="South Asian">South Asian</option>
-                      <option value="Hispanic" selected>Hispanic</option>
+                      <option value="Hispanic">Hispanic</option>
                       <option value="Turkish">Turkish</option>
                       <option value="Pasifika">Pasifika</option>
                       <option value="Others">Others</option>
@@ -121,38 +121,38 @@
 
                   <div class="field-item">
                     <span>Country of Residence</span>
-                    <input id="contry_of_res" type="text" placeholder="e.g. United States" value="Mexico" required>
+                    <input id="contry_of_res" type="text" placeholder="e.g. United States" value="" required>
                   </div>
 
                   <div class="field-item">
                     <span>Jaundice at Birth</span>
                     <div class="segmented-control" id="jaundice-group">
-                      <input type="radio" name="jundice" id="jaundice-no" value="no" checked>
+                      <input type="radio" name="jundice" id="jaundice-no" value="no">
                       <label for="jaundice-no">No</label>
                       
                       <input type="radio" name="jundice" id="jaundice-yes" value="yes">
                       <label for="jaundice-yes">Yes</label>
                     </div>
-                    <input type="hidden" id="jundice" value="no" required>
+                    <input type="hidden" id="jundice" value="" required>
                   </div>
 
                   <div class="field-item">
                     <span>Autism Family History</span>
                     <div class="segmented-control" id="austim-group">
-                      <input type="radio" name="austim" id="austim-no" value="no" checked>
+                      <input type="radio" name="austim" id="austim-no" value="no">
                       <label for="austim-no">No</label>
                       
                       <input type="radio" name="austim" id="austim-yes" value="yes">
                       <label for="austim-yes">Yes</label>
                     </div>
-                    <input type="hidden" id="austim" value="no" required>
+                    <input type="hidden" id="austim" value="" required>
                   </div>
 
                   <div class="field-item">
                     <span>Respondent Relation</span>
                     <select id="relation" required>
-                      <option value="" disabled>Select relation</option>
-                      <option value="Self" selected>Self</option>
+                      <option value="" disabled selected>Select relation</option>
+                      <option value="Self">Self</option>
                       <option value="Parent">Parent</option>
                       <option value="Health care professional">Health professional</option>
                       <option value="Relative">Relative</option>

@@ -61,16 +61,15 @@ body {
   background-size: 16px 16px;
 }
 
-/* App Master Container: Compact Centered Dashboard */
+/* App Master Container: Full Width Dashboard */
 .app-container {
   display: flex;
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  max-width: 1240px; /* Constrain width to prevent over-stretching and 'zoomed' feel */
-  margin: 0 auto;
-  padding: 12px;
-  gap: 12px;
+  margin: 0;
+  padding: 16px;
+  gap: 16px;
 }
 
 /* --- Header Section --- */
@@ -167,10 +166,14 @@ body {
 
 .unified-card-3d {
   width: 100%;
-  max-width: 700px;
-  height: 620px; /* Fixed height for smooth transitions */
+  max-width: 900px; /* Wider, but still readable */
+  height: auto;
+  min-height: 70vh;
   position: relative;
   overflow: hidden;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .unified-state {
@@ -198,16 +201,11 @@ body {
 
 /* 3D Skeuomorphic Container Styling */
 .workspace-pane {
-  background: var(--bg-card);
-  border: 1px solid rgba(203, 213, 225, 0.8);
-  border-radius: 16px;
-  box-shadow: var(--shadow-clinical);
   display: flex;
   flex-direction: column;
-  min-height: 0; /* Contain children */
   transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
   transform-style: preserve-3d;
-  perspective: 1200px; /* Deeper 3D viewport perspective */
+  perspective: 1200px;
 }
 
 /* --- Left Panel: Wizard Form --- */
@@ -222,10 +220,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
-  border-bottom: 1px solid rgba(203, 213, 225, 0.6);
-  background: #fafbfe;
-  border-radius: 16px 16px 0 0;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.4);
 }
 
 .step-node {
@@ -526,10 +523,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .wizard-actions {
   display: flex;
   justify-content: space-between;
-  padding: 12px 20px;
-  border-top: 1px solid rgba(203, 213, 225, 0.6);
-  background: #fafbfe;
-  border-radius: 0 0 16px 16px;
+  padding: 20px;
+  margin-top: 10px;
+  border-top: 1px solid rgba(203, 213, 225, 0.4);
 }
 
 /* Buttons System */
@@ -827,11 +823,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
   align-items: center;
   text-align: center;
   width: 100%;
-  background: var(--bg-card);
-  border: 1px solid rgba(203, 213, 225, 0.8);
+  background: transparent;
   padding: 20px;
-  border-radius: 16px;
-  box-shadow: var(--shadow-clinical);
+  position: relative;
   gap: 14px;
 }
 
