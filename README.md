@@ -28,6 +28,20 @@ This project was built as an engineering case study to explore how traditional m
 
 The project relies on a deeply integrated **Hybrid Expert-ML Architecture**, bridging the gap between traditional machine learning and clinical logic rules.
 
+```mermaid
+graph TD
+    A[Patient Biometrics & 10-Question Survey] --> B[FastAPI Backend Engine]
+    B --> C[Data Preprocessing & Encoding]
+    C --> D[Mamdani Fuzzy Inference System]
+    C --> E[Feature Space Extraction]
+    D -->|Continuous Fuzzy Scores| F[Hybrid Feature Concatenation]
+    E -->|Raw Clinical Metrics| F
+    F --> G[Random Forest ML Classifier]
+    G --> H[Unified 3D Diagnostics UI]
+    D -->|Fuzzy Rules Explanation| H
+    H --> I[Risk Index & Narrative Report]
+```
+
 1. **Data Ingestion & Preprocessing:** The system consumes a 10-question behavioral survey alongside patient biometrics. These raw inputs (`A1_Score` to `A10_Score`) are passed concurrently into two pipelines.
 2. **Fuzzy Logic Expert System (The Rule Engine):** Instead of binary decision boundaries, the system uses a **Mamdani Fuzzy Inference System**. Raw scores are mapped into continuous membership degrees (e.g., *Mild*, *Moderate*, *Severe*). A set of clinical rules evaluates the interaction between social traits and repetitive behaviors, outputting a continuous `Fuzzy_Score` that represents the clinical expert's modeled intuition.
 3. **Hybrid Random Forest Classifier (The ML Engine):** The final decision is not made by the fuzzy system alone. Instead, the `Fuzzy_Score` is concatenated with the original raw features to create an enriched **Hybrid Feature Space**. A Random Forest Classifier is trained on this enriched dataset. By providing the ML model with human-like clinical reasoning features, the model achieves higher accuracy and drastically reduces false positives compared to the baseline model.
