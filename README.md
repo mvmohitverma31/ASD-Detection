@@ -4,6 +4,8 @@ A robust, experimental engineering platform designed for autism spectrum disorde
 
 This project was built as an engineering case study to explore how traditional machine learning (Random Forest) can be augmented with expert systems (Fuzzy Logic) to produce a highly accurate, interpretable **Hybrid ML** model. The application features a high-fidelity, 3D unified clinical UI designed to process and present telemetry clearly.
 
+📚 **Read the Full Research Paper:** [ASD Screening Intelligence Research Document](https://docs.google.com/document/d/1KBcMBTBntDNorLW_KFBbVYU9PQL3Lvit/edit?usp=drive_link&ouid=117330977789940588096&rtpof=true&sd=true)
+
 > **Note for Evaluators:** This software is a proof-of-concept engineering research project. It is **not** an FDA-approved medical diagnostic tool and should not be used for actual clinical diagnosis.
 
 ---
@@ -19,6 +21,32 @@ This project was built as an engineering case study to explore how traditional m
 - **Unified Diagnostic Console:** A seamless, single-flow user experience built with HTML, CSS, and Vanilla JS.
 - **State Machine UI:** Transitions smoothly from a stepped clinical wizard into a dynamic, hardware-accelerated 3D scanning animation, culminating in a single unified "ASD Risk Index."
 - **Premium Aesthetics:** Zero-scroll design, clinical glassmorphic teals/cyans, and interactive 3D card tilts using CSS perspective and Javascript mouse-tracking.
+
+---
+
+## 🧠 System Architecture
+
+The project relies on a deeply integrated **Hybrid Expert-ML Architecture**, bridging the gap between traditional machine learning and clinical logic rules.
+
+1. **Data Ingestion & Preprocessing:** The system consumes a 10-question behavioral survey alongside patient biometrics. These raw inputs (`A1_Score` to `A10_Score`) are passed concurrently into two pipelines.
+2. **Fuzzy Logic Expert System (The Rule Engine):** Instead of binary decision boundaries, the system uses a **Mamdani Fuzzy Inference System**. Raw scores are mapped into continuous membership degrees (e.g., *Mild*, *Moderate*, *Severe*). A set of clinical rules evaluates the interaction between social traits and repetitive behaviors, outputting a continuous `Fuzzy_Score` that represents the clinical expert's modeled intuition.
+3. **Hybrid Random Forest Classifier (The ML Engine):** The final decision is not made by the fuzzy system alone. Instead, the `Fuzzy_Score` is concatenated with the original raw features to create an enriched **Hybrid Feature Space**. A Random Forest Classifier is trained on this enriched dataset. By providing the ML model with human-like clinical reasoning features, the model achieves higher accuracy and drastically reduces false positives compared to the baseline model.
+
+---
+
+## 📸 Application Interface
+
+Here is a preview of the unified 3D application workflow:
+
+| Patient Profile | Social Traits | Behavioral Traits |
+| :---: | :---: | :---: |
+| ![Patient Profile](images/step1.png) | ![Social Traits](images/step2.png) | ![Behavioral Traits](images/step3.png) |
+
+| Low Risk Telemetry | High Risk Telemetry |
+| :---: | :---: |
+| ![Low Risk Result](images/result-low.png) | ![High Risk Result](images/result-high.png) |
+
+*(Note: Please ensure the images provided are saved in an `images/` directory at the root of the repository with the filenames listed above for them to display correctly).*
 
 ---
 
